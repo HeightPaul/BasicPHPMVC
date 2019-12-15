@@ -1,0 +1,82 @@
+{% extends "public/index.html" %}
+{#{% extends "/libs/html/template.html" %}#}
+{% block content %}
+<div class="container">
+	<h1 class="text-center display-3 font-weight-bold">{{data.title}}</h1><br>
+	<div class="d-flex">
+		<div class="p-2 w-50">
+		<a href="{{root}}/authors/insert" class="btn btn-primary btn-lg btn-block">Insert a new author</a>
+		</div>
+		<div class="p-2 flex-fill">
+		<a href="{{root}}/authors/search" class="btn btn-primary btn-lg btn-block">Search for specific authors</a></div>
+	</div>
+
+	{% if data.pagedData is not empty %}
+		<table class="table table-hover">
+			<thead>
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+			</tr>
+			</thead>
+			<tbody>
+			{% for author in data.pagedData %}
+			<tr>
+				<td>{{author.firstname}}</td>
+				<td>{{author.lastname}}</td>
+				<td class="d-flex justify-content-end">
+					<a href="{{root}}/authors/edit/{{author.ID}}" class="btn btn-outline-dark">Edit</a>&nbsp;
+					<a href="{{root}}/authors/delete/{{author.ID}}" class="btn btn-outline-dark">Delete</a>
+				</td>
+			</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+
+		<h3>Page:</h3>
+		{% if data.pagesCount > 1 %}
+			{# Number of page around current page+1 #}
+			{% set nearbyPagesLimit = 3 %}
+			<ul class="pagination">
+				{% if data.currentPage != 1 %}
+				<li class="page-item">
+					<a class="page-link" href="{{root}}/authors/data/?page=1">First</a>
+				</li>
+				{% endif %}
+				{% for i in 1..data.pagesCount %}
+					{% if 0 == (data.currentPage - nearbyPagesLimit) - loop.index %} {# dot before #}
+						<li class="page-item disabled" ><a class="page-link" href="#">...</a></li>
+					{% elseif 0 == (data.currentPage + nearbyPagesLimit) - loop.index %} {# dot after #}
+						<li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+					{% elseif 0 < (data.currentPage - nearbyPagesLimit) - loop.index %} {# hide all before #}
+					{% elseif 0 > (data.currentPage + nearbyPagesLimit) - loop.index %} {# hide all after #}
+					{% else %}
+						<li {% if data.currentPage == loop.index %} class="active page-item"{% endif %}>
+							<a class="page-link" href="{{root}}/authors/data/?page={{ loop.index }}">{{ loop.index }}</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+				{% if data.currentPage != data.pagesCount %}
+				<li class="page-item">
+					<a class="page-link" href="{{root}}/authors/data/?page={{ data.pagesCount }}">Last</a>
+				</li>
+				{% endif %}
+			</ul>
+		{% endif %}
+		<h4 class="d-inline">Authors per page:</h2>
+		<form method="post" id="authorForm" class="d-inline">
+			<select form="authorForm" name="filter" class="d-inline btn btn-light" >
+				<option value="5" selected>5</option>
+				<option value="10">10</option>
+				<option value="20">20</option>
+				<option value="50">50</option>
+			</select>
+			<input type="submit" value="Filter" class="btn btn-primary">
+		</form>
+		<div class="d-flex justify-content-end">
+			<a href="#" class="btn btn-outline-primary m-2">Top</a>
+		</div>
+	{% endif %}
+</div>
+
+{% endblock %}

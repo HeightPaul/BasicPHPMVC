@@ -1,0 +1,73 @@
+{% extends "public/index.html" %}
+{% block content %}
+<div class="container">
+	<h1 class="text-center display-3 font-weight-bold">{{data.title}}</h1><br>
+	<div class="d-flex">
+		<div class="m-2 flex-fill">
+			<input type="submit" value="Filter" class="btn btn-info btn-lg btn-block" form="songFilter">
+		</div>
+		<div class="m-2 w-25">
+			<a href="{{root}}/songs/search" class="btn btn-info btn-lg btn-block">Reset</a>
+		</div>
+		<div class="m-2 w-25">
+			<a href="{{root}}/songs/insert" class="btn btn-info btn-lg btn-block">Insert a new song</a>
+		</div>
+		<div class="m-2 w-25">
+			<a href="{{root}}/songs/data" class="btn btn-info btn-lg btn-block">Back to full list</a>
+		</div>
+	</div>
+	<form method="post" id="songFilter">
+		<div class="d-flex">
+			<div class="form-group m-2 flex-fill">
+				<label for="name">Name:</label>
+				<input type="text" name="name" id="name" class="form-control" value="{% if name %}{{name}}{% endif %}">
+			</div>
+			<div class="form-group m-2 flex-fill">
+				<label for="year">Year:</label>
+				<input type="number" name="year" id="year" min="0" max="2019" class="form-control" value="{% if year %}{{year}}{% endif %}">
+			</div>
+			<div class="form-group m-2 flex-fill">
+				<label for="author">Author:</label>
+				<select name="authorID" id="authorID" class="form-control">
+						<option value="-1" selected>Unknown</option>
+					{% for author in data.allAuthors %}
+					{% if author.ID == authorID and authorID %}
+						<option value="{{author.ID}}" selected>{{author.firstname ~ " " ~ author.lastname}}</option>
+					{% else %}
+						<option value="{{author.ID}}">{{author.firstname ~ " " ~ author.lastname}}</option>
+					{% endif %}
+					{% endfor %}
+				</select><br>
+			</div>
+		</div>
+	</form>
+	{% if data.filteredData is not empty %}
+	<table class="table table-hover">
+		<thead>
+		<tr>
+			<th>Name</th>
+			<th>Year</th>
+			<th>Author Name</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for song in data.filteredData %}
+		<tr>
+			<td>{{song.name}}</td>
+			<td>{{song.year}}</td>
+			<td>{{song.authorname}}</td>
+			<td class="d-flex justify-content-end">
+				<a href="{{root}}/songs/edit/{{song.ID}}" class="btn btn-outline-dark">Edit</a>&nbsp;
+				<a href="{{root}}/songs/delete/{{song.ID}}" class="btn btn-outline-dark">Delete</a>
+			</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	<div class="d-flex justify-content-end">
+		<a href="#" class="btn btn-outline-info m-2">Top</a>
+	</div>
+	{% endif %}
+</div>
+
+{% endblock %}

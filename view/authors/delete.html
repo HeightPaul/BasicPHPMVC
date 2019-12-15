@@ -1,0 +1,20 @@
+{% extends "public/index.html" %}
+{% block content %}
+<div class="container jumbotron">
+<form method="post">
+	{% for author in data.selectedRow %}
+	<h3>Do you want to delete the author?</h3><br><br>
+	<input type="hidden" name="id" value="{{author.ID}}"/>
+	<h5>First Name: {{author.firstname}}</h5><br>
+	<h5>Last Name: {{author.lastname}}</h5><br>
+	{% endfor %}
+	<br>
+	<button type="submit" name="edit" value="true" class="btn btn-primary">Delete this author</button>
+	<a href="{{root}}/authors/data" class="btn btn-dark">Back to all authors</a>
+</form>
+	<br>
+{% if data.result is not empty %}
+<p class="alert alert-primary w-50">{{data.result}}</p>
+{% endif %}
+</div>
+{% endblock %}

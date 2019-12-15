@@ -1,0 +1,37 @@
+{% extends "public/index.html" %}
+{% block body %}
+
+<form method="post">
+    <br><label for="brand">Brand:</label>
+    <input type="text" name="brand"></br>
+    <br><label for="age">Age:</label>
+    <input type="text" name="age"></br>
+    <br><input type="submit" value="Submit" class="btn btn-secondary"></br>
+</form>
+
+{% if data.seedCars is not empty %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>New ID</th>
+            <th>Brand</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+    <ul>
+    {% for car in data.seedCars %}
+        <tr>
+            <td>{{car.id}}</td>
+            <td>{{car.newId}}</td>
+            <td>{{car.brand}}</td>
+            <td>{{car.age}}</td>
+        </tr>
+    {% endfor %}
+    </ul>
+    </tbody>
+</table>
+{% endif %}
+
+{% endblock %}

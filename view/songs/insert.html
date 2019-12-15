@@ -1,0 +1,24 @@
+{% extends "public/index.html" %}
+{% block content %}
+<div class="container">
+	<h3>Insert a new song</h3><br>
+<form method="post">
+	<label for="name">Name:</label>
+	<input type="text" name="name" id="name" class="form-control"><br>
+	<label for="year">Year:</label>
+	<input type="number" name="year" id="year" min="0" max="2019" class="form-control"><br>
+	<label for="authorID">Author:</label>
+	<select name="authorID" id="authorID" class="form-control">
+		{% for author in data.allAuthors %}
+		<option value="{{author.ID}}">{{author.firstname ~ " " ~ author.lastname}}</option>
+		{% endfor %}
+	</select><br>
+	<input type="submit" value="Insert Song" class="btn btn-info">
+	<a href="{{root}}/songs/data" class="btn btn-dark">Back</a>
+</form>
+	<br>
+{% if data.result is not empty %}
+<p class="alert alert-primary w-50">{{data.result}}</p>
+{% endif %}
+</div>
+{% endblock %}

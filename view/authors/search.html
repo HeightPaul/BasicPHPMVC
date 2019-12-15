@@ -1,0 +1,55 @@
+{% extends "public/index.html" %}
+{% block content %}
+<div class="container">
+	<h1 class="text-center display-3 font-weight-bold">{{data.title}}</h1><br>
+	<div class="d-flex">
+		<div class="m-2 flex-fill">
+			<input type="submit" value="Filter" class="btn btn-info btn-lg btn-block" form="authorFilter">
+		</div>
+		<div class="m-2 w-25">
+			<a href="{{root}}/authors/insert" class="btn btn-info btn-lg btn-block">Insert a new author</a>
+		</div>
+		<div class="m-2 w-25">
+			<a href="{{root}}/authors/data" class="btn btn-info btn-lg btn-block">Back to full list</a>
+		</div>
+	</div>
+	<form method="post" id="authorFilter">
+		<div class="d-flex">
+			<div class="form-group m-2 flex-fill">
+				<label for="firstname">First Name:</label>
+				<input type="text" name="firstname" id="firstname" class="form-control" value="{% if firstName %}{{firstName}}{% endif %}">
+			</div>
+			<div class="form-group m-2 flex-fill">
+				<label for="lastname">Last Name:</label>
+				<input type="text" name="lastname" id="lastname" class="form-control" value="{% if lastName %}{{lastName}}{% endif %}">
+			</div>
+		</div>
+	</form>
+	{% if data.filteredData is not empty %}
+	<table class="table table-hover">
+		<thead>
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for author in data.filteredData %}
+		<tr>
+			<td>{{author.firstname}}</td>
+			<td>{{author.lastname}}</td>
+			<td class="d-flex justify-content-end">
+				<a href="{{root}}/authors/edit/{{author.ID}}" class="btn btn-outline-dark">Edit</a>&nbsp;
+				<a href="{{root}}/authors/delete/{{author.ID}}" class="btn btn-outline-dark">Delete</a>
+			</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	<div class="d-flex justify-content-end">
+		<a href="#" class="btn btn-outline-info m-2">Top</a>
+	</div>
+	{% endif %}
+</div>
+
+{% endblock %}

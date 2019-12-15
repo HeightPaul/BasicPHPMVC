@@ -1,0 +1,22 @@
+{% extends "public/index.html" %}
+{% block content %}
+<div class="container jumbotron">
+<form method="post">
+	{% for author in data.selectedRow %}
+	<h3>Edit author's information:</h3><br>
+	<input type="hidden" name="id" value="{{author.ID}}"/>
+	<label for="firstname">First Name:</label>
+	<input type="text" name="firstname" value="{{author.firstname}}" class="form-control"><br>
+	<label for="lastname">First Name:</label>
+	<input type="text" name="lastname"  value="{{author.lastname}}" class="form-control"><br>
+	{% endfor %}
+	<button type="submit" name="edit" value="true" class="btn btn-primary">Edit this author</button>
+	<a href="{{root}}/authors/data" class="btn btn-dark">Back to all authors</a>
+</form>
+<br>
+{% if data.result is not empty %}
+<p class="alert alert-primary w-50">{{data.result}}</p>
+{% endif %}
+</div>
+
+{% endblock %}

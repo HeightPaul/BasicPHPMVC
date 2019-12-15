@@ -1,0 +1,67 @@
+{% block header %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Watercolor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- JS -->
+<script type="text/javascript" src="/view/libs/js/jquery_1.3.2.js"></script>
+<script type="text/javascript" src="/view/libs/js/jqueryui.js"></script>
+<script type="text/javascript" src="/view/libs/js/easing.js"></script>
+<script type="text/javascript" src="/composer.json"></script>
+<script type="text/javascript" src="/view/libs/js/custom.js"></script>
+<!-- ENDS JS -->
+<!-- superfish -->
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" media="screen" href="/view/libs/css/superfish-custom.css" />
+<script type="text/javascript" src="/view/libs/js/superfish-1.4.8/js/hoverIntent.js"></script>
+<script type="text/javascript" src="/view/libs/js/superfish-1.4.8/js/superfish.js"></script>
+<!-- ENDS superfish -->
+<!-- CSS -->
+<link rel="stylesheet" href="/view/libs/css/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/view/libs/css/spring.css" type="text/css" media="screen" />
+<!--[if IE 6]>
+<link rel="stylesheet" type="text/css" media="screen" href="view/libs/css/ie-hacks.css" />
+<script type="text/javascript" src="view/libs/js/DD_belatedPNG.js"></script>
+<script>/* EXAMPLE */ DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!-- ENDS CSS -->
+<!-- Cufon -->
+<script src="/view/libs/js/cufon-yui.js" type="text/javascript"></script>
+<script src="/view/libs/js/bebas_400.font.js" type="text/javascript"></script>
+<script type="text/javascript">Cufon.replace('.custom', { fontFamily: 'bebas', hover: true });</script>
+<!-- /Cufon -->
+</head>
+<body>
+<div id="wrapper">
+        <!-- navigation -->
+        <ul id="nav" class="sf-menu">
+          <li class="custom"><a href="/view/libs/contact.html">CONTACT</a></li>
+          <li class="custom"><a href="/view/libs/blog.html">BLOG</a></li>
+          <li class="custom"><a href="/view/libs/gallery.html">GALLERY</a></li>
+          <li class="custom"><a href="/view/libs/about.html">ABOUT</a>
+            <ul>
+              <li><a href="/view/libs/#">Sub page 1</a></li>
+              <li><a href="/view/libs/#">Sub page 2</a></li>
+              <li><a href="/view/libs/#">Sub page 3</a></li>
+            </ul>
+          </li>
+        </ul>
+        <!-- ENDS navigation -->
+        <!-- HEADER -->
+        <div id="header"> <a href="view/libs/index.html"><img src="view/libs/img/logo.png" alt="" id="logo" /></a> <img src="view/libs/img/nav-arrow.png" alt="" id="arrow" class="arrow-home" />
+          <form action="#" method="post" id="search">
+            <p>
+              <input type="text" onfocus="defaultInput(this)" onblur="clearInput(this)" name="keyword" id="keyword" value="Search..." />
+            </p>
+            <p>
+              <input type="submit" id="go" value="" />
+            </p>
+            <div class="clear"></div>
+          </form>
+        </div>
+        <!-- ENDS HEADER -->
+{% endblock %}

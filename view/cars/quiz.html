@@ -1,0 +1,25 @@
+{% extends "public/index.html" %}
+{% block body %}
+<div class="ml-3">
+    <h4>{{ title }} Time: Find the specific car's brand and car's age in the seeding data.</h4>
+    <form method="post" >
+
+        <div class="form-group">
+            <label for="brand">Brand:</label><br>
+            <input type="radio" name="brand" value="honda">honda<br>
+            <input type="radio" name="brand" value="ferrari">ferrari<br>
+            <input type="radio" name="brand" value="audi">audi<br>
+            <input type="radio" name="brand" value="fiat">fiat<br>
+            </div>
+        <div class="form-group">
+            <label for="age">Age:</label><br>
+            <input type="radio" name="age" value="5">5<br>
+            <input type="radio" name="age" value="2">2<br>
+            <input type="radio" name="age" value="3">3<br>
+            <input type="radio" name="age" value="4">4<br>
+        </div>
+        <input type="submit" value="Answer" class="btn btn-secondary"><br>
+    </form>
+    <p>Result: {{result}} points.</p>
+</div>
+{% endblock %}

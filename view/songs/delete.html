@@ -1,0 +1,22 @@
+{% extends "public/index.html" %}
+{% block content %}
+<div class="container jumbotron">
+<form method="post">
+	{% for song in data.selectedRow %}
+	<h3>Do you want to delete the song?</h3><br><br>
+	<input type="hidden" name="id" value="{{song.ID}}"/>
+	<h5>Name: {{song.name}}</h5><br>
+	<h5>Year: {{song.year}}</h5><br>
+	<h5>Author: {{song.author}}</h5><br>
+	<h5>Author ID: {{song.authorID}}</h5><br>
+	{% endfor %}
+	<br>
+	<button type="submit" name="edit" value="true" class="btn btn-primary">Delete this song</button>
+	<a href="{{root}}/songs/data" class="btn btn-dark">Back to all songs</a>
+</form>
+	<br>
+{% if data.result is not empty %}
+<p class="alert alert-primary w-50">{{data.result}}</p>
+{% endif %}
+</div>
+{% endblock %}
